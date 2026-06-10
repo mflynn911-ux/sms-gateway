@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Opening Messages...</title>
+    <title>SMS Gateway</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #0078d4;
+            color: white;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+    </style>
 </head>
 <body>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const to = urlParams.get('to') || '';
-        const body = urlParams.get('body') || '';
 
-        if (to) {
-            window.location.href = `sms:${to}&body=${encodeURIComponent(body)}`;
-        }
+<div class="card">
+    <h3 style="margin: 0 0 10px 0; color: #333;">Birthday Text Router</h3>
+    <p style="color: #666; font-size: 14px; margin: 0 0 20px 0;">Tap the button below to open your native messaging application.</p>
+    <a id="smsButton" class="btn" href="#">💬 Draft Text Message</a>
+</div>
 
-        setTimeout(() => { window.close(); }, 1500);
-    </script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const to = urlParams.get('to') || '';
+    const body = urlParams.get('body') || '';
+
+    if (to) {
+        // Construct the physical link directly on the button layout
+        document.getElementById('smsButton').href = `sms:${to}&body=${encodeURIComponent(body)}`;
+    }
+</script>
+
 </body>
 </html>

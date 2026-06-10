@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opening Messages...</title>
+</head>
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const to = urlParams.get('to') || '';
+        const body = urlParams.get('body') || '';
+
+        if (to) {
+            window.location.href = `sms:${to}&body=${encodeURIComponent(body)}`;
+        }
+
+        setTimeout(() => { window.close(); }, 1500);
+    </script>
+</body>
+</html>
